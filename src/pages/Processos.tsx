@@ -89,7 +89,7 @@ export default function Processos() {
     loadData()
     pb.collection('clients')
       .getFullList({ fields: 'id,name', sort: 'name' })
-      .then(setClients)
+      .then((records) => setClients(records.map((r: any) => ({ id: r.id, name: r.name }))))
       .catch(console.error)
   }, [])
 

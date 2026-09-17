@@ -98,7 +98,7 @@ export default function Agenda() {
     <div className="space-y-6 animate-fade-in-up pb-8">
       <PageHeader
         title="Agenda"
-        subtitle="Execuções de Ordens de Serviço"
+        description="Execuções de Ordens de Serviço"
         actions={
           <Button onClick={() => handleOpenSlot(new Date())}>
             <Plus className="mr-2 h-4 w-4" /> Novo agendamento

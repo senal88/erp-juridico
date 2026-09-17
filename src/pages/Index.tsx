@@ -192,7 +192,7 @@ export default function Index() {
     <div className="space-y-8 animate-fade-in-up pb-8">
       <PageHeader
         title="Dashboard"
-        subtitle="Visão executiva do ERP"
+        description="Visão executiva do ERP"
         actions={
           <Button asChild>
             <Link to="/contratos?new=true">
@@ -322,7 +322,7 @@ export default function Index() {
                         </p>
                       </div>
                     </div>
-                    <StatusChip tone={mapStatusToTone('expiring')} label="Vencendo" />
+                    <StatusChip status="expiring" />
                   </div>
                 ))}
               </div>
@@ -366,10 +366,7 @@ export default function Index() {
                         </p>
                       </div>
                     </div>
-                    <StatusChip
-                      tone={mapStatusToTone(os.status)}
-                      label={mapStatusToLabel(os.status)}
-                    />
+                    <StatusChip status={os.status} />
                   </div>
                 ))}
               </div>
@@ -404,7 +401,7 @@ export default function Index() {
                   return (
                     <Link
                       key={dl.id}
-                      to={`/processos/${dl.process}`}
+                      to={`/processos/${dl.process_id || (dl as any).process}`}
                       className="flex items-center justify-between p-4 hover:bg-muted/40 transition-colors block"
                     >
                       <div className="flex items-center gap-4">
@@ -456,7 +453,7 @@ export default function Index() {
                 {upcomingHearings.map((h) => (
                   <Link
                     key={h.id}
-                    to={`/processos/${h.process}`}
+                    to={`/processos/${h.process_id || (h as any).process}`}
                     className="flex items-center justify-between p-4 hover:bg-muted/40 transition-colors block"
                   >
                     <div className="flex items-center gap-4">
@@ -520,7 +517,7 @@ export default function Index() {
                 />
                 <ChartTooltip
                   cursor={{ fill: 'hsl(var(--muted))', opacity: 0.1 }}
-                  content={<ChartTooltipContent />}
+                  content={<ChartTooltipContent payload={[]} />}
                 />
                 <Bar
                   dataKey="count"

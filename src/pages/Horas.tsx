@@ -259,9 +259,7 @@ export default function HorasPage() {
                         <div className="flex items-center gap-1.5 font-semibold">
                           <Timer className="w-4 h-4 text-muted-foreground" />
                           {formatMinutes(e.duration_minutes)}
-                          {e.is_billable && (
-                            <Coins className="w-4 h-4 text-amber-500" title="Cobrável" />
-                          )}
+                          {e.is_billable && <Coins className="w-4 h-4 text-amber-500" />}
                         </div>
                       </TableCell>
                       <TableCell>

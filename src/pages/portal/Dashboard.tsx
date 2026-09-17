@@ -135,7 +135,7 @@ export default function PortalDashboard() {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Processos Ativos</CardTitle>
@@ -179,6 +179,20 @@ export default function PortalDashboard() {
             </div>
             <p className="text-xs text-muted-foreground">
               {pendingInvoices.length} fatura(s) aguardando pagamento
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-primary/5 border-primary/20">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-primary">Patrimônio</CardTitle>
+            <Link to="/portal/patrimonio" className="text-primary hover:opacity-80">
+              <ChevronRight className="h-4 w-4" />
+            </Link>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-primary">{assetCount}</div>
+            <p className="text-xs text-muted-foreground">
+              {assetCount === 1 ? 'Ativo mapeado' : 'Ativos mapeados'}
             </p>
           </CardContent>
         </Card>

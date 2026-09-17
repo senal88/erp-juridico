@@ -80,9 +80,7 @@ export function LeadKanban({ leads, onEdit, onStatusChange }: Props) {
                       </span>
                       {isLeadOverdue(l) && (
                         <span title="Follow-up Atrasado">
-                          <AlertCircle
-                            className="w-4 h-4 text-destructive animate-pulse"
-                          />
+                          <AlertCircle className="w-4 h-4 text-destructive animate-pulse" />
                         </span>
                       )}
                     </div>

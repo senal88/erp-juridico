@@ -42,9 +42,9 @@ export function InvoiceItemDialog({ open, onOpenChange, item, onSave }: Props) {
   const form = useForm<any>({
     resolver: zodResolver(schema) as any,
     defaultValues: {
-      description: initialData?.description || '',
-      quantity: initialData?.quantity || 1,
-      unit_price: initialData?.unit_price || 0,
+      description: item?.description || '',
+      quantity: item?.quantity || 1,
+      unit_price: item?.unit_price || 0,
     },
   })
   useEffect(() => {

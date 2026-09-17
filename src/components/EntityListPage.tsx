@@ -89,6 +89,7 @@ const supplierSchema = z.object({
 export interface EntityListPageProps {
   collection: 'clients' | 'suppliers'
   title: string
+  description?: string
   singular: string
   icon?: React.ElementType
   newAction?: () => void
@@ -97,6 +98,7 @@ export interface EntityListPageProps {
 export function EntityListPage({
   collection,
   title,
+  description,
   singular,
   icon,
   newAction,
@@ -233,6 +235,7 @@ export function EntityListPage({
     <div className="space-y-6 animate-fade-in-up">
       <PageHeader
         title={title}
+        description={description}
         icon={icon}
         actions={
           <Button
