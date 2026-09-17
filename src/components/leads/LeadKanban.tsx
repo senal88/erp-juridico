@@ -79,10 +79,11 @@ export function LeadKanban({ leads, onEdit, onStatusChange }: Props) {
                         {l.estimated_value ? formatBRL(l.estimated_value) : '-'}
                       </span>
                       {isLeadOverdue(l) && (
-                        <AlertCircle
-                          className="w-4 h-4 text-destructive animate-pulse"
-                          title="Follow-up Atrasado"
-                        />
+                        <span title="Follow-up Atrasado">
+                          <AlertCircle
+                            className="w-4 h-4 text-destructive animate-pulse"
+                          />
+                        </span>
                       )}
                     </div>
                   </CardContent>

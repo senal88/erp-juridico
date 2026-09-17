@@ -19,6 +19,7 @@ export default function PortalDashboard() {
   const [hearings, setHearings] = useState<ProcessHearing[]>([])
   const [deadlines, setDeadlines] = useState<ProcessDeadline[]>([])
   const [invoices, setInvoices] = useState<Invoice[]>([])
+  const [assetCount, setAssetCount] = useState(0)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function PortalDashboard() {
         const todayStr = format(today, 'yyyy-MM-dd')
         const endStr = format(end, 'yyyy-MM-dd')
 
-        const [procData, hearData, deadData, invData] = await Promise.all([
+        const [procData, hearData, deadData, invData, assetData] = await Promise.all([
           pb.collection('processes').getFullList<Process>({ sort: '-created' }),
           pb.collection('process_hearings').getFullList<ProcessHearing>({
             expand: 'process_id',
@@ -44,12 +45,17 @@ export default function PortalDashboard() {
             filter: `due_date >= "${todayStr}" && due_date <= "${endStr}" && status = 'aberto'`,
           }),
           pb.collection('invoices').getFullList<Invoice>({ sort: '-due_date' }),
+          pb
+            .collection('patrimonial_assets')
+            .getList(1, 1)
+            .catch(() => ({ totalItems: 0 })),
         ])
 
         setProcesses(procData)
         setHearings(hearData)
         setDeadlines(deadData)
         setInvoices(invData)
+        setAssetCount(assetData.totalItems)
       } catch (err) {
         console.error(err)
       } finally {
@@ -122,6 +128,9 @@ export default function PortalDashboard() {
           </Button>
           <Button asChild>
             <Link to="/portal/faturas">Acessar Faturas</Link>
+          </Button>
+          <Button asChild variant="secondary">
+            <Link to="/portal/patrimonio">Meu Patrimônio</Link>
           </Button>
         </div>
       </div>

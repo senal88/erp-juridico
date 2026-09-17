@@ -39,15 +39,14 @@ interface Props {
 }
 
 export function InvoiceItemDialog({ open, onOpenChange, item, onSave }: Props) {
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<any>({
+    resolver: zodResolver(schema) as any,
     defaultValues: {
-      description: '',
-      quantity: 1,
-      unit_price: 0,
+      description: initialData?.description || '',
+      quantity: initialData?.quantity || 1,
+      unit_price: initialData?.unit_price || 0,
     },
   })
-
   useEffect(() => {
     if (open) {
       if (item) {

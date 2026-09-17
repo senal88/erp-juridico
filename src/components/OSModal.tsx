@@ -214,7 +214,7 @@ export function OSModal({
                           </p>
                         </div>
                       </div>
-                      <StatusChip tone="neutral" label={s.status} />
+                      <StatusChip status={s.status} />
                     </div>
                   ))}
                 </div>

@@ -25,6 +25,7 @@ export default function PortalLayout() {
     { name: 'Início', href: '/portal' },
     { name: 'Meus processos', href: '/portal/processos' },
     { name: 'Faturas', href: '/portal/faturas' },
+    { name: 'Meu Patrimônio', href: '/portal/patrimonio' },
   ]
 
   const handleSignOut = () => {

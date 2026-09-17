@@ -77,8 +77,8 @@ export function ExpenseSheet({ open, onOpenChange, expense, onSave }: ExpenseShe
   const [isDeleting, setIsDeleting] = useState(false)
   const [file, setFile] = useState<File | null>(null)
 
-  const form = useForm<ExpenseFormValues>({
-    resolver: zodResolver(expenseSchema),
+  const form = useForm<any>({
+    resolver: zodResolver(expenseSchema) as any,
     defaultValues: {
       title: '',
       kind: 'custas',

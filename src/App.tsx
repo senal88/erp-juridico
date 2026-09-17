@@ -21,6 +21,7 @@ import Modelos from './pages/Modelos'
 import InvoiceDetalhes from './pages/InvoiceDetalhes'
 import AdminUsers from './pages/admin/Users'
 import ProcessoDetalhes from './pages/ProcessoDetalhes'
+import Patrimonio from './pages/Patrimonio'
 import NotFound from './pages/NotFound'
 
 import PortalLayout from './components/PortalLayout'
@@ -28,6 +29,7 @@ import PortalDashboard from './pages/portal/Dashboard'
 import PortalProcessos from './pages/portal/Processos'
 import PortalProcessoDetalhes from './pages/portal/ProcessoDetalhes'
 import PortalFaturas from './pages/portal/Faturas'
+import PortalPatrimonio from './pages/portal/Patrimonio'
 
 const ProtectedRoute = ({ children }: { children: any }) => {
   const { user, loading } = useAuth()
@@ -69,6 +71,7 @@ const AppRoutes = () => (
       <Route path="/leads" element={<Navigate to="/crm/leads" replace />} />
       <Route path="/crm/leads" element={<Leads />} />
       <Route path="/clientes" element={<Clientes />} />
+      <Route path="/patrimonio" element={<Patrimonio />} />
       <Route path="/fornecedores" element={<Fornecedores />} />
       <Route path="/contratos" element={<Contratos />} />
       <Route path="/processos" element={<Processos />} />
@@ -93,6 +96,7 @@ const AppRoutes = () => (
       <Route path="/portal/processos" element={<PortalProcessos />} />
       <Route path="/portal/processos/:id" element={<PortalProcessoDetalhes />} />
       <Route path="/portal/faturas" element={<PortalFaturas />} />
+      <Route path="/portal/patrimonio" element={<PortalPatrimonio />} />
     </Route>
 
     <Route path="*" element={<NotFound />} />
@@ -100,7 +104,7 @@ const AppRoutes = () => (
 )
 
 const App = () => (
-  <BrowserRouter future={{ v7_startTransition: false, v7_relativeSplatPath: false }}>
+  <BrowserRouter>
     <AuthProvider>
       <ThemeProvider>
         <TooltipProvider>

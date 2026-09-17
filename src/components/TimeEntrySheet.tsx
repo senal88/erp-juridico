@@ -74,9 +74,9 @@ export function TimeEntrySheet({ open, onOpenChange, entry, onSave, presetProces
     if (parsedMin <= 0)
       return toast({ title: 'Erro', description: 'A duração deve ser > 0', variant: 'destructive' })
 
-    const data = {
+    const data: any = {
       description: desc,
-      date: new Date(date).toISOString(),
+      date,
       duration_minutes: parsedMin,
       category: cat,
       is_billable: isBillable,
@@ -86,7 +86,6 @@ export function TimeEntrySheet({ open, onOpenChange, entry, onSave, presetProces
       client: client === '_none_' ? '' : client,
       process: process === '_none_' ? '' : process,
     }
-
     try {
       if (entry) {
         await updateTimeEntry(entry.id, data)

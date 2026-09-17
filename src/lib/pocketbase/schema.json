@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T04:01:00.259Z",
+  "generatedAt": "2026-09-17T09:11:30.329Z",
   "collections": [
     {
       "name": "users",
@@ -1904,6 +1904,185 @@
         "CREATE INDEX idx_leads_source ON leads (source)",
         "CREATE INDEX idx_leads_next_followup_at ON leads (next_followup_at)",
         "CREATE INDEX idx_leads_converted_client ON leads (converted_client)"
+      ]
+    },
+    {
+      "name": "patrimonial_assets",
+      "type": "base",
+      "apiRules": {
+        "list": "@request.auth.role = 'admin' || @request.auth.role = 'consultor' || @request.auth.role = 'lawyer' || (@request.auth.role = 'cliente' && client_id.user = @request.auth.id)",
+        "view": "@request.auth.role = 'admin' || @request.auth.role = 'consultor' || @request.auth.role = 'lawyer' || (@request.auth.role = 'cliente' && client_id.user = @request.auth.id)",
+        "create": "@request.auth.role = 'admin' || @request.auth.role = 'consultor' || @request.auth.role = 'lawyer'",
+        "update": "@request.auth.role = 'admin' || @request.auth.role = 'consultor' || @request.auth.role = 'lawyer'",
+        "delete": "@request.auth.role = 'admin' || @request.auth.role = 'lawyer'"
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "required": true,
+          "system": false
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "asset_type",
+          "type": "select",
+          "required": true,
+          "system": false,
+          "selectValues": ["asset", "liability"]
+        },
+        {
+          "name": "asset_class",
+          "type": "select",
+          "required": true,
+          "system": false,
+          "selectValues": [
+            "real_estate",
+            "corporate_stake",
+            "financial_investments",
+            "vehicles_tangible",
+            "intellectual_property",
+            "crypto_digital",
+            "other"
+          ]
+        },
+        {
+          "name": "valuation_value",
+          "type": "number",
+          "required": true,
+          "system": false
+        },
+        {
+          "name": "valuation_date",
+          "type": "date",
+          "required": true,
+          "system": false
+        },
+        {
+          "name": "currency",
+          "type": "select",
+          "required": true,
+          "system": false,
+          "selectValues": ["BRL", "USD", "EUR", "GBP", "CHF"]
+        },
+        {
+          "name": "direct_owner",
+          "type": "text",
+          "required": true,
+          "system": false
+        },
+        {
+          "name": "shared_ownership",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "holding_structure",
+          "type": "select",
+          "required": true,
+          "system": false,
+          "selectValues": [
+            "individual",
+            "holding_familiar",
+            "holding_operacional",
+            "offshore_pic",
+            "trust",
+            "fund_exclusive",
+            "condominio_patrimonial",
+            "outro"
+          ]
+        },
+        {
+          "name": "jurisdiction_type",
+          "type": "select",
+          "required": true,
+          "system": false,
+          "selectValues": ["brasil", "offshore"]
+        },
+        {
+          "name": "country",
+          "type": "text",
+          "required": true,
+          "system": false
+        },
+        {
+          "name": "encumbrances",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "liquidity",
+          "type": "select",
+          "required": true,
+          "system": false,
+          "selectValues": ["alta", "media", "baixa", "iliquido"]
+        },
+        {
+          "name": "evidence_level",
+          "type": "select",
+          "required": true,
+          "system": false,
+          "selectValues": ["E0", "E1", "E2", "E3", "E4"]
+        },
+        {
+          "name": "valid_for_material_decision",
+          "type": "bool",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "evidence_document_file",
+          "type": "file",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "evidence_notes",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "client_id",
+          "type": "relation",
+          "required": true,
+          "system": false,
+          "collectionRef": "clients"
+        },
+        {
+          "name": "created",
+          "type": "autodate",
+          "required": false,
+          "system": false,
+          "autodateTriggers": ["onCreate"]
+        },
+        {
+          "name": "updated",
+          "type": "autodate",
+          "required": false,
+          "system": false,
+          "autodateTriggers": ["onCreate", "onUpdate"]
+        }
+      ],
+      "indexes": [
+        "CREATE INDEX idx_patrimonial_client ON patrimonial_assets (client_id)",
+        "CREATE INDEX idx_patrimonial_class ON patrimonial_assets (asset_class)",
+        "CREATE INDEX idx_patrimonial_type ON patrimonial_assets (asset_type)",
+        "CREATE INDEX idx_patrimonial_evidence ON patrimonial_assets (evidence_level)",
+        "CREATE INDEX idx_patrimonial_jurisdiction ON patrimonial_assets (jurisdiction_type)"
       ]
     }
   ]

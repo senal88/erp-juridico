@@ -69,8 +69,8 @@ export function FeeSheet({ open, onOpenChange, fee, onSave }: FeeSheetProps) {
   const [processes, setProcesses] = useState<any[]>([])
   const [isDeleting, setIsDeleting] = useState(false)
 
-  const form = useForm<FeeFormValues>({
-    resolver: zodResolver(feeSchema),
+  const form = useForm<any>({
+    resolver: zodResolver(feeSchema) as any,
     defaultValues: {
       title: '',
       kind: 'fixo',

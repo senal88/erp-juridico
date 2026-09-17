@@ -62,14 +62,14 @@ export function ProcessSheet({ open, onOpenChange, process }: ProcessSheetProps)
   const [clients, setClients] = useState<any[]>([])
   const [users, setUsers] = useState<any[]>([])
 
-  const form = useForm<ProcessFormValues>({
-    resolver: zodResolver(processSchema),
+  const form = useForm<any>({
+    resolver: zodResolver(processSchema) as any,
     defaultValues: {
       title: '',
       client_id: '',
       cnj: '',
-      area: '',
-      instance: '',
+      area: 'civil',
+      instance: 'primeira',
       vara: '',
       comarca: '',
       valor_causa: 0,
@@ -78,7 +78,6 @@ export function ProcessSheet({ open, onOpenChange, process }: ProcessSheetProps)
       summary: '',
     },
   })
-
   useEffect(() => {
     if (open) {
       pb.collection('clients').getFullList({ sort: 'name' }).then(setClients).catch(console.error)
@@ -116,14 +115,14 @@ export function ProcessSheet({ open, onOpenChange, process }: ProcessSheetProps)
     }
   }, [open, process, form])
 
-  const onSubmit = async (data: ProcessFormValues) => {
+  const onSubmit = async (data: any) => {
     setLoading(true)
     try {
       if (process) {
-        await updateProcess(process.id, data)
+        await updateProcess(process.id, data as any)
         toast({ title: 'Processo atualizado com sucesso' })
       } else {
-        await createProcess(data)
+        await createProcess(data as any)
         toast({ title: 'Processo criado com sucesso' })
       }
       onOpenChange(false)

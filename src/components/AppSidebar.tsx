@@ -13,6 +13,7 @@ import {
   Wallet,
   Timer,
   FileSignature,
+  Landmark,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
@@ -23,6 +24,7 @@ const NAV_ITEMS = [
   { title: 'Dashboard', url: '/', icon: LayoutDashboard },
   { title: 'CRM / Leads', url: '/crm/leads', icon: Target },
   { title: 'Clientes', url: '/clientes', icon: Users },
+  { title: 'Patrimônio', url: '/patrimonio', icon: Landmark },
   { title: 'Fornecedores', url: '/fornecedores', icon: Briefcase },
   { title: 'Contratos', url: '/contratos', icon: FileText },
   { title: 'Processos', url: '/processos', icon: Gavel },
