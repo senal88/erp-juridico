@@ -82,9 +82,9 @@
     "oxc-parser": "^0.128.0",
     "oxfmt": "^0.47.0",
     "oxlint": "^1.62.0",
-    "postcss": "^8.5.13",
+    "postcss": "^8.5.23",
     "tailwindcss": "^3.4.19",
     "typescript": "^6.0.3",
-    "vite": "8.0.10"
+    "vite": "8.0.16"
   }
 }
